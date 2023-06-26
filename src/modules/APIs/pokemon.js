@@ -1,4 +1,4 @@
-const urlAPI = "https://pokeapi.co/api/v2/pokemon/";
+const urlAPI = 'https://pokeapi.co/api/v2/pokemon/';
 
 export const getPokemonsData = async () => {
   const response = await fetch(urlAPI);
@@ -6,8 +6,8 @@ export const getPokemonsData = async () => {
   return data.results;
 };
 
-export const getPokemonData = async (urlAPI) => {
-  const response = await fetch(urlAPI);
+export const getPokemonData = async (pokemonUrl) => {
+  const response = await fetch(pokemonUrl);
   const data = await response.json();
-  return data.sprites.front_default;;
+  return data.sprites.front_default;
 };

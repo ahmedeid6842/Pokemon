@@ -1,9 +1,8 @@
-// import getPokemonData from "./APIs/pokemon";
+import { getPokemonsData, getPokemonData } from './APIs/pokemon.js';
 
-import { getPokemonsData, getPokemonData } from "./APIs/pokemon";
+const section = document.querySelector('section.pokemon-cards');
 
-const section = document.querySelector("section.pokemon-cards");
-
+// create pokemon card
 const renderPokemonCard = ({ name, url }) => `
   <div class="pokemon-card">
     <img class="pokemon-card-image" src="${url}" alt="${name}">
@@ -28,7 +27,7 @@ const renderPokemonCard = ({ name, url }) => `
 
 // Renders an array of pokemon cards
 const renderPokemonCards = (listOfPokemons) => {
-  const pokemonDetail = listOfPokemons.map(renderPokemonCard).join("");
+  const pokemonDetail = listOfPokemons.map(renderPokemonCard).join('');
   section.innerHTML = pokemonDetail;
 };
 
@@ -36,21 +35,20 @@ const renderPokemonCards = (listOfPokemons) => {
 const fetchPokemonData = async () => {
   try {
     const pokemonBaseData = await getPokemonsData();
-    const promisesArray = pokemonBaseData.map(async ({ url }) => {
-      return await getPokemonData(url);
-    });
+    const promisesArray = pokemonBaseData.map(async ({ url }) => getPokemonData(url));
     const urlsImgArray = await Promise.all(promisesArray);
-    return pokemonBaseData.map(({ name }, i) => ({
+    const pokemonArray = pokemonBaseData.map(({ name }, i) => ({
       name,
       url: urlsImgArray[i],
     }));
+
+    return pokemonArray;
   } catch (error) {
     return [];
   }
 };
 
 // Define main function ------------------------------------------------------------------------
-
 const main = async () => {
   const listOfPokemons = await fetchPokemonData();
   renderPokemonCards(listOfPokemons);
