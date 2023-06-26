@@ -1,1 +1,4 @@
-import './styles.css';
+import "./styles.css";
+import renderPokemonCards from "./modules/renderPokemons";
+
+renderPokemonCards()
