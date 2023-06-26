@@ -8,6 +8,7 @@ html {
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
 }
+
 *,
 *::before,
 *::after {
@@ -17,17 +18,21 @@ html {
   font-size: 100%;
   vertical-align: baseline;
   box-sizing: inherit;
+
   /* outline: 1px solid red !important; */
 }
+
 :root {
   /* Set your variables here */
   --font: 'Montserrat', sans-serif;
 }
+
 /* Remove list styles from ul and ol elements */
 ul,
 ol {
   list-style: none;
 }
+
 /* Set the default link color */
 a {
   color: inherit;
