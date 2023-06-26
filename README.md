@@ -89,6 +89,11 @@ Clone this repository to your desired folder:
 - Twitter: [@Khaled86756991](https://twitter.com/Khaled86756991)
 - LinkedIn: [Khaled Alaa](https://www.linkedin.com/in/khaled-alaa-594bb9256/)
 
+👤 **Ahmed Eid**
+- GitHub: [ahmedeid6842](https://github.com/ahmedeid6842)
+- Twitter: [@ahmedeid2684](https://twitter.com/ahmedeid2684)
+- LinkedIn: [Ahmed Eid](https://www.linkedin.com/in/ahmed-eid-0018571b1/)
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
