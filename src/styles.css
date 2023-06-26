@@ -1,5 +1,4 @@
 /* Global Styles */
-
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
@@ -8,6 +7,7 @@ html {
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
 }
+
 *,
 *::before,
 *::after {
@@ -17,17 +17,21 @@ html {
   font-size: 100%;
   vertical-align: baseline;
   box-sizing: inherit;
+
   /* outline: 1px solid red !important; */
 }
+
 :root {
   /* Set your variables here */
   --font: 'Montserrat', sans-serif;
 }
+
 /* Remove list styles from ul and ol elements */
 ul,
 ol {
   list-style: none;
 }
+
 /* Set the default link color */
 a {
   color: inherit;
@@ -71,4 +75,16 @@ header ul {
 
 .links-out {
   color: rgb(119, 119, 119);
+}
+
+footer {
+  display: flex;
+  height: 130px;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(223, 223, 223);
+}
+
+footer a {
+  text-decoration: underline;
 }
