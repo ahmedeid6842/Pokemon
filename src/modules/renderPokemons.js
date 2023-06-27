@@ -1,13 +1,15 @@
 /* eslint-disable import/no-cycle */
 
-import { getLikes } from "./APIs/likes.js";
-import addLikeListener from "./likeListener.js";
-import { getPokemonsData, getPokemonData } from "./APIs/pokemon.js";
+import { getLikes } from './APIs/likes.js';
+import addLikeListener from './likeListener.js';
+import { getPokemonsData, getPokemonData } from './APIs/pokemon.js';
 
-const section = document.querySelector("section.pokemon-cards");
+const section = document.querySelector('section.pokemon-cards');
 
 // create pokemon card
-const renderPokemonCard = ({ name, url, likes, index }) => `
+const renderPokemonCard = ({
+  name, url, likes, index,
+}) => `
   <div class="pokemon-card" id="${index + 1}">
     <img class="pokemon-card-image" src="${url}" alt="${name}">
     <div class="pokemon-card-header">
@@ -43,12 +45,12 @@ const displayPokemonCards = async (listOfPokemons, likesData) => {
     };
   });
 
-  const pokemonDetail = updatedPokemons.map(renderPokemonCard).join("");
+  const pokemonDetail = updatedPokemons.map(renderPokemonCard).join('');
   section.innerHTML = pokemonDetail;
 };
 
 const pokemonCounter = (pokemons) => {
-  const sampHeaderElement = document.querySelector("samp");
+  const sampHeaderElement = document.querySelector('samp');
   sampHeaderElement.textContent = pokemons.length;
 };
 
@@ -65,9 +67,7 @@ const renderPokemonCards = async (listOfPokemons) => {
 const fetchPokemonData = async () => {
   try {
     const pokemonBaseData = await getPokemonsData();
-    const promisesArray = pokemonBaseData.map(async ({ url }) =>
-      getPokemonData(url)
-    );
+    const promisesArray = pokemonBaseData.map(async ({ url }) => getPokemonData(url));
     const urlsImgArray = await Promise.all(promisesArray);
     const pokemonArray = pokemonBaseData.map(({ name }, i) => ({
       name,
