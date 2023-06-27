@@ -6,3 +6,13 @@ export const getLikes = async () => {
   const data = await response.json();
   return data;
 };
+
+export const postLike = async (pokemonID) => {
+  const body = JSON.stringify({ item_id: pokemonID });
+  const options = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body,
+  };
+  const result = await fetch(involvementURL, options);
+};
