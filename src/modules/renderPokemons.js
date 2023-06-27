@@ -1,4 +1,6 @@
-import getLikes from './APIs/likes.js';
+/* eslint-disable import/no-cycle */
+import { getLikes } from './APIs/likes.js';
+import addLikeListener from './likeListener.js';
 import { getPokemonsData, getPokemonData } from './APIs/pokemon.js';
 
 const section = document.querySelector('section.pokemon-cards');
@@ -7,7 +9,7 @@ const section = document.querySelector('section.pokemon-cards');
 const renderPokemonCard = ({
   name, url, likes, index,
 }) => `
-  <div class="pokemon-card">
+  <div class="pokemon-card" id="${index + 1}">
     <img class="pokemon-card-image" src="${url}" alt="${name}">
     <div class="pokemon-card-header">
       <h3>${name}</h3>
@@ -31,9 +33,7 @@ const renderPokemonCard = ({
   </div>
 `;
 
-const renderPokemonCards = async (listOfPokemons) => {
-  // Retrieve the list of likes data using the getLikes function.
-  const likesData = await getLikes();
+const displayPokemonCards = async (listOfPokemons, likesData) => {
   // Map over the list of Pokemons and add the corresponding likes data to each Pokemon object.
   const updatedPokemons = listOfPokemons.map((pokemon, index) => {
     const likes = likesData.find((data) => data.item_id === String(index + 1));
@@ -47,6 +47,15 @@ const renderPokemonCards = async (listOfPokemons) => {
   const pokemonDetail = updatedPokemons.map(renderPokemonCard).join('');
   // Insert the HTML string into the section element.
   section.innerHTML = pokemonDetail;
+};
+
+const renderPokemonCards = async (listOfPokemons) => {
+  // Retrieve the list of likes data using the getLikes function.
+  const likesData = await getLikes();
+
+  displayPokemonCards(listOfPokemons, likesData);
+
+  addLikeListener();
 };
 
 // Fetches data from the API and returns an array of pokemon data

@@ -172,6 +172,10 @@ button:hover .border {
   background-color: transparent;
 }
 
+.like:hover {
+  cursor: pointer;
+}
+
 .pokemon-card-button > div:first-child {
   display: flex;
   flex-direction: column;
