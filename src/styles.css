@@ -45,6 +45,10 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
+samp {
+  font-family: 'Press Start 2P', cursive;
+}
+
 header {
   height: 30px;
   display: flex;
