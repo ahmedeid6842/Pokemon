@@ -1,5 +1,4 @@
 /* eslint-disable import/no-cycle */
-
 import { getLikes } from './APIs/likes.js';
 import addLikeListener from './likeListener.js';
 import { getPokemonsData, getPokemonData } from './APIs/pokemon.js';
@@ -44,8 +43,9 @@ const displayPokemonCards = async (listOfPokemons, likesData) => {
       index,
     };
   });
-
+  // Generate the HTML for each updated Pokemon card and join the resulting strings together.
   const pokemonDetail = updatedPokemons.map(renderPokemonCard).join('');
+  // Insert the HTML string into the section element.
   section.innerHTML = pokemonDetail;
 };
 
