@@ -1,7 +1,7 @@
 /* Global Styles */
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
 html {
   box-sizing: border-box;
@@ -24,7 +24,7 @@ html {
 
 :root {
   /* Set your variables here */
-  --font: 'Montserrat', sans-serif;
+  --font: "Montserrat", sans-serif;
 }
 
 /* Remove list styles from ul and ol elements */
@@ -42,7 +42,7 @@ a {
 /* Set the default text color and font family */
 body {
   color: #070707;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 header {
@@ -57,7 +57,7 @@ header {
   justify-content: space-between;
   margin-right: 2%;
   align-items: center;
-  font-family: 'Press Start 2P', monospace;
+  font-family: "Press Start 2P", monospace;
 }
 
 header img {
@@ -76,4 +76,98 @@ header ul {
 
 .links-out {
   color: rgb(119, 119, 119);
+}
+
+/* <!------------ bookemon cards styles --------------!> */
+
+section.pokemon-cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-top: 1.5rem;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.pokemon-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  background: var(--card);
+  border-radius: 1.5rem;
+  border: transparent;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  width: 15rem;
+  height: 12rem;
+  margin: 4rem 0.8rem 0.8rem 0.8rem;
+  padding: 1rem;
+  transition: all;
+  transition-duration: 0.7s;
+}
+
+.pokemon-card:hover {
+  scale: 1.05;
+}
+
+.pokemon-card-image,
+.pokemon-card-header,
+.pokemon-card-body,
+.pokemon-card-button {
+  display: inherit;
+  width: 100%;
+  justify-content: center;
+}
+
+img.pokemon-card-image {
+  width: 50%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -90%);
+}
+
+.pokemon-card-body {
+  padding: 0.5rem;
+}
+
+button[type="button"] {
+  color: white;
+  background-color: #4169e1;
+  font-weight: bold;
+  position: relative;
+  cursor: pointer;
+  margin: auto;
+  padding: 1rem 2rem 1rem 2rem;
+  border: none;
+  transition: all 0.1s linear;
+  box-shadow: 0.5rem 1rem 1rem -1rem rgba(0, 0, 0, 0.5);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+button .border {
+  position: absolute;
+  border: 0.15em solid #4169e1;
+  transition: all 0.3s 0.08s linear;
+  top: 50%;
+  left: 50%;
+  width: 8rem;
+  height: 2rem;
+  transform: translate(-50%, -50%);
+}
+
+button:hover .border {
+  display: block;
+  width: 9rem;
+  height: 3.5rem;
+}
+
+.full-rounded {
+  border-radius: 2rem;
+}
+
+.like {
+  background-color: transparent;
 }
