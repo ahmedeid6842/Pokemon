@@ -1,11 +1,12 @@
 import { getLikes } from "./APIs/likes.js";
+import addLikeListener from "./likeListener.js";
 import { getPokemonsData, getPokemonData } from "./APIs/pokemon.js";
 
 const section = document.querySelector("section.pokemon-cards");
 
 // create pokemon card
 const renderPokemonCard = ({ name, url, likes, index }) => `
-  <div class="pokemon-card">
+  <div class="pokemon-card" id="${index + 1}">
     <img class="pokemon-card-image" src="${url}" alt="${name}">
     <div class="pokemon-card-header">
       <h3>${name}</h3>
@@ -45,6 +46,7 @@ const renderPokemonCards = async (listOfPokemons) => {
   const pokemonDetail = updatedPokemons.map(renderPokemonCard).join("");
   // Insert the HTML string into the section element.
   section.innerHTML = pokemonDetail;
+  addLikeListener();
 };
 
 // Fetches data from the API and returns an array of pokemon data
@@ -59,7 +61,7 @@ const fetchPokemonData = async () => {
       name,
       url: urlsImgArray[i],
     }));
-
+    
     return pokemonArray;
   } catch (error) {
     return [];
@@ -70,9 +72,6 @@ const fetchPokemonData = async () => {
 const main = async () => {
   const listOfPokemons = await fetchPokemonData();
   renderPokemonCards(listOfPokemons);
-  const test = await getLikes();
-  //   console.log(test);
-  //   console.log(listOfPokemons);
 };
 
 export default main;
