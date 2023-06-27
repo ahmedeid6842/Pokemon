@@ -1,10 +1,12 @@
-import { getLikes } from "./APIs/likes.js";
-import { getPokemonsData, getPokemonData } from "./APIs/pokemon.js";
+import getLikes from './APIs/likes.js';
+import { getPokemonsData, getPokemonData } from './APIs/pokemon.js';
 
-const section = document.querySelector("section.pokemon-cards");
+const section = document.querySelector('section.pokemon-cards');
 
 // create pokemon card
-const renderPokemonCard = ({ name, url, likes, index }) => `
+const renderPokemonCard = ({
+  name, url, likes, index,
+}) => `
   <div class="pokemon-card">
     <img class="pokemon-card-image" src="${url}" alt="${name}">
     <div class="pokemon-card-header">
@@ -42,7 +44,7 @@ const renderPokemonCards = async (listOfPokemons) => {
     };
   });
   // Generate the HTML for each updated Pokemon card and join the resulting strings together.
-  const pokemonDetail = updatedPokemons.map(renderPokemonCard).join("");
+  const pokemonDetail = updatedPokemons.map(renderPokemonCard).join('');
   // Insert the HTML string into the section element.
   section.innerHTML = pokemonDetail;
 };
@@ -51,9 +53,7 @@ const renderPokemonCards = async (listOfPokemons) => {
 const fetchPokemonData = async () => {
   try {
     const pokemonBaseData = await getPokemonsData();
-    const promisesArray = pokemonBaseData.map(async ({ url }) =>
-      getPokemonData(url)
-    );
+    const promisesArray = pokemonBaseData.map(async ({ url }) => getPokemonData(url));
     const urlsImgArray = await Promise.all(promisesArray);
     const pokemonArray = pokemonBaseData.map(({ name }, i) => ({
       name,
@@ -70,9 +70,6 @@ const fetchPokemonData = async () => {
 const main = async () => {
   const listOfPokemons = await fetchPokemonData();
   renderPokemonCards(listOfPokemons);
-  const test = await getLikes();
-  //   console.log(test);
-  //   console.log(listOfPokemons);
 };
 
 export default main;
