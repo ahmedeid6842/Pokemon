@@ -1,10 +1,10 @@
 /* eslint-disable import/no-cycle */
-import { getLikes } from "./APIs/likes.js";
-import addLikeListener from "./likeListener.js";
-import { getPokemonsData, getPokemonData } from "./APIs/pokemon.js";
-import addCommentButtonListener from "./commentListener.js";
+import { getLikes } from './APIs/likes.js';
+import addLikeListener from './likeListener.js';
+import { getPokemonsData, getPokemonData } from './APIs/pokemon.js';
+import addCommentButtonListener from './commentListener.js';
 
-const section = document.querySelector("section.pokemon-cards");
+const section = document.querySelector('section.pokemon-cards');
 
 // create pokemon card
 const renderPokemonCard = ({
@@ -17,7 +17,7 @@ const renderPokemonCard = ({
   weight,
   ability,
 }) => {
-  console.log(name,height);
+  console.log(name, height);
   return `
 <div class="pokemon-card" id="${index + 1}">
   <img class="pokemon-card-image" src="${url}" alt="${name}" />
@@ -90,7 +90,6 @@ const renderPokemonCard = ({
 `;
 };
 
-
 const displayPokemonCards = async (listOfPokemons, likesData) => {
   // Map over the list of Pokemons and add the corresponding likes data to each Pokemon object.
   const updatedPokemons = listOfPokemons.map((pokemon, index) => {
@@ -102,14 +101,14 @@ const displayPokemonCards = async (listOfPokemons, likesData) => {
     };
   });
   // Generate the HTML for each updated Pokemon card and join the resulting strings together.
-  const pokemonDetail = updatedPokemons.map(renderPokemonCard).join("");
+  const pokemonDetail = updatedPokemons.map(renderPokemonCard).join('');
   // Insert the HTML string into the section element.
   section.innerHTML = pokemonDetail;
   addCommentButtonListener();
 };
 
 const pokemonCounter = (pokemons) => {
-  const sampHeaderElement = document.querySelector("samp");
+  const sampHeaderElement = document.querySelector('samp');
   sampHeaderElement.textContent = pokemons.length;
 };
 
@@ -126,9 +125,7 @@ const renderPokemonCards = async (listOfPokemons) => {
 const fetchPokemonData = async () => {
   try {
     const pokemonBaseData = await getPokemonsData();
-    const promisesArray = pokemonBaseData.map(async ({ url }) =>
-      getPokemonData(url)
-    );
+    const promisesArray = pokemonBaseData.map(async ({ url }) => getPokemonData(url));
     const urlsImgArray = await Promise.all(promisesArray);
     console.log(urlsImgArray);
     const pokemonArray = pokemonBaseData.map(({ name }, i) => ({
