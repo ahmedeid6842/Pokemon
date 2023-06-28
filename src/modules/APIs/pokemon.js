@@ -9,5 +9,5 @@ export const getPokemonsData = async () => {
 export const getPokemonData = async (pokemonUrl) => {
   const response = await fetch(pokemonUrl);
   const data = await response.json();
-  return data.sprites.front_default;
+  return data;
 };
