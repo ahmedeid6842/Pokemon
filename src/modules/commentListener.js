@@ -4,7 +4,6 @@ const addCommentButtonListener = () => {
   const commentBtns = document.querySelectorAll(".comment-btn");
   const pokemonCards = document.querySelectorAll(".pokemon-card");
   const ClosepopupBtns = document.querySelectorAll(".close-popup");
-  const footer = document.querySelector("footer")
   
   commentBtns.forEach((commentBtn) => {
     commentBtn.addEventListener("click", async (event) => {
@@ -13,12 +12,14 @@ const addCommentButtonListener = () => {
       const commentListComponent = document.querySelector(
         `#comments-list-pk-${cardId}`
       );
+      
+      const footer = document.querySelector("footer")
       pokemonCards.forEach((card) => {
         card.classList.add("hidden");
+        footer.classList.toggle("hidden")
       });
       
       popup.classList.toggle("hidden"); 
-      footer.classList.toggle("hidden")
       const comments = await getComments(cardId);
       buildCommentsList(comments, commentListComponent);
     });
