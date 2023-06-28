@@ -16,8 +16,10 @@ const renderPokemonCard = ({
   height,
   weight,
   ability,
-}) => `
-<div class="pokemon-card" id="${index + 1} hidden">
+}) => {
+  console.log(name, height);
+  return `
+<div class="pokemon-card" id="${index + 1}">
   <img class="pokemon-card-image" src="${url}" alt="${name}" />
   <div class="pokemon-card-header">
     <h3>${name}</h3>
@@ -53,7 +55,7 @@ const renderPokemonCard = ({
     </button>
   </div>
 </div>
-<div class="popup hidden">
+<div class="popup hidden" id="popup-pk-${index + 1}">
   <div class="popup-header">
     <h2>${name}</h2>
     <button class="close-popup">X</button>
@@ -68,7 +70,7 @@ const renderPokemonCard = ({
     </div>
     <div class="comment-section">
       <h3>Comments</h3>
-      <ul class="comments-list"></ul>
+      <ul class="comments-list" id="comments-list-pk-${index + 1}"></ul>
       <form class="comment-form">
         <div class="comme">
           <div>
@@ -86,6 +88,7 @@ const renderPokemonCard = ({
   </div>
 </div>
 `;
+};
 
 const displayPokemonCards = async (listOfPokemons, likesData) => {
   // Map over the list of Pokemons and add the corresponding likes data to each Pokemon object.
