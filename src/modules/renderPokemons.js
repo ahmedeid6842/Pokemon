@@ -49,6 +49,11 @@ const displayPokemonCards = async (listOfPokemons, likesData) => {
   section.innerHTML = pokemonDetail;
 };
 
+const pokemonCounter = (pokemons) => {
+  const sampHeaderElement = document.querySelector('samp');
+  sampHeaderElement.textContent = pokemons.length;
+};
+
 const renderPokemonCards = async (listOfPokemons) => {
   // Retrieve the list of likes data using the getLikes function.
   const likesData = await getLikes();
@@ -79,6 +84,7 @@ const fetchPokemonData = async () => {
 const main = async () => {
   const listOfPokemons = await fetchPokemonData();
   renderPokemonCards(listOfPokemons);
+  pokemonCounter(listOfPokemons);
 };
 
 export default main;
