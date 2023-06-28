@@ -186,7 +186,7 @@ button:hover .border {
   align-items: center;
 }
 
-/*<!-------------- comment popup-----------!> */
+/* <!-------------- comment popup-----------!> */
 .hidden {
   display: none;
 }
@@ -284,7 +284,7 @@ textarea {
 }
 
 .comment-section form input,
-.comment-section form textarea{
+.comment-section form textarea {
   flex: 1;
   margin-right: 10px;
 }
