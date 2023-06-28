@@ -1,10 +1,10 @@
 /* eslint-disable import/no-cycle */
-import { getLikes } from './APIs/likes.js';
-import addLikeListener from './likeListener.js';
-import { getPokemonsData, getPokemonData } from './APIs/pokemon.js';
-import addCommentButtonListener from './commentListener.js';
+import { getLikes } from "./APIs/likes.js";
+import addLikeListener from "./likeListener.js";
+import { getPokemonsData, getPokemonData } from "./APIs/pokemon.js";
+import addCommentButtonListener from "./commentListener.js";
 
-const section = document.querySelector('section.pokemon-cards');
+const section = document.querySelector("section.pokemon-cards");
 
 // create pokemon card
 const renderPokemonCard = ({
@@ -16,8 +16,10 @@ const renderPokemonCard = ({
   height,
   weight,
   ability,
-}) => `
-<div class="pokemon-card" id="${index + 1} hidden">
+}) => {
+  console.log(name,height);
+  return `
+<div class="pokemon-card" id="${index + 1}">
   <img class="pokemon-card-image" src="${url}" alt="${name}" />
   <div class="pokemon-card-header">
     <h3>${name}</h3>
@@ -53,7 +55,7 @@ const renderPokemonCard = ({
     </button>
   </div>
 </div>
-<div class="popup hidden">
+<div class="popup hidden" id="popup-pk-${index + 1}">
   <div class="popup-header">
     <h2>${name}</h2>
     <button class="close-popup">X</button>
@@ -68,7 +70,7 @@ const renderPokemonCard = ({
     </div>
     <div class="comment-section">
       <h3>Comments</h3>
-      <ul class="comments-list"></ul>
+      <ul class="comments-list" id="comments-list-pk-${index + 1}"></ul>
       <form class="comment-form">
         <div class="comme">
           <div>
@@ -86,6 +88,8 @@ const renderPokemonCard = ({
   </div>
 </div>
 `;
+};
+
 
 const displayPokemonCards = async (listOfPokemons, likesData) => {
   // Map over the list of Pokemons and add the corresponding likes data to each Pokemon object.
@@ -98,14 +102,14 @@ const displayPokemonCards = async (listOfPokemons, likesData) => {
     };
   });
   // Generate the HTML for each updated Pokemon card and join the resulting strings together.
-  const pokemonDetail = updatedPokemons.map(renderPokemonCard).join('');
+  const pokemonDetail = updatedPokemons.map(renderPokemonCard).join("");
   // Insert the HTML string into the section element.
   section.innerHTML = pokemonDetail;
   addCommentButtonListener();
 };
 
 const pokemonCounter = (pokemons) => {
-  const sampHeaderElement = document.querySelector('samp');
+  const sampHeaderElement = document.querySelector("samp");
   sampHeaderElement.textContent = pokemons.length;
 };
 
@@ -122,7 +126,9 @@ const renderPokemonCards = async (listOfPokemons) => {
 const fetchPokemonData = async () => {
   try {
     const pokemonBaseData = await getPokemonsData();
-    const promisesArray = pokemonBaseData.map(async ({ url }) => getPokemonData(url));
+    const promisesArray = pokemonBaseData.map(async ({ url }) =>
+      getPokemonData(url)
+    );
     const urlsImgArray = await Promise.all(promisesArray);
     console.log(urlsImgArray);
     const pokemonArray = pokemonBaseData.map(({ name }, i) => ({
