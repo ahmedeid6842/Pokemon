@@ -201,7 +201,6 @@ button:hover .border {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   height: 95%;
   width: 70%;
-  position: fixed;
 }
 
 .popup-header {
