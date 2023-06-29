@@ -26,7 +26,6 @@ const sendComment = async (pokemonID) => {
   );
 
   const errorElement = document.getElementById(`error-${pokemonID}`);
-  console.log(errorElement);
   if (usernameInput.value !== '' && commentInput.value !== '') {
     await postcommint(pokemonID, usernameInput.value, commentInput.value);
     const comments = await getComments(pokemonID);
@@ -98,9 +97,7 @@ export const addCommentButtonListener = () => {
 
 export const sendCommentButtonListener = () => {
   const commentForms = document.querySelectorAll('.comment-form');
-  // console.log(commentForms);
   commentForms.forEach((commentForm) => {
-    // console.log(commentForm);
     const pokemonID = commentForm.id.split('-')[2];
     const submitButton = document.querySelector(`#add-comment-pk-${pokemonID}`);
     submitButton.addEventListener('click', (event) => {

@@ -23,5 +23,4 @@ export const postcommint = async (pokemonID, username, comment) => {
   };
   await fetch(`${involvementURL}?item_id=${pokemonID}`, requestOptions);
 };
-
 export default getComments;
