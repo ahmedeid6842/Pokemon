@@ -14,7 +14,6 @@
   - [Install](#install)
   - [Usage](#usage)
   - [Run tests](#run-tests)
-  - [Deployment](#triangular_flag_on_post-deployment)
 - [👥 Authors](#authors)
 - [🔭 Future Features](#future-features)
 - [🤝 Contributing](#contributing)
@@ -24,9 +23,9 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 [capstoneAPI] <a name="list structure"></a>
+# 📖 Pokemon <a name="list structure"></a>
 
->**capstoneAPI!** This Pokedex is an application that catalogs information about the various species of Pokemon. Includes details such as the Pokemon's name, type, abilities, strengths y comments about it.
+>**Pokemon!** This Pokedex is an application that catalogs information about the various species of Pokemon. Includes details such as the Pokemon's name, type, abilities, strengths y comments about it.
 
 
 ## 🛠 Built With <a name="built-with">
@@ -54,7 +53,7 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo Link]()
+- [Live Demo Link](https://ahmedeid6842.github.io/API_Capstone/src)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
@@ -75,8 +74,34 @@ Clone this repository to your desired folder:
 
 - clone the project using by running the following command :
 
-`git clone`
-`https://github.com/ahmedeid6842/API_Capstone.git`
+```
+git clone https://github.com/ahmedeid6842/API_Capstone.git
+
+```
+
+### Install
+
+Install this project with:
+
+ ```bash
+ npm install
+```
+
+### Usage
+
+To run this project and open the Pokemon run the following command : 
+
+```bash
+ npm run start
+```
+
+### Test
+
+To run the test run the following command : 
+
+```bash
+ npm run test
+```
 
 
 
@@ -130,7 +155,7 @@ Give a ⭐️ if you like this project!
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-   I would like to thank Microverse.
+  We would like to thank Microverse.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -138,7 +163,7 @@ Give a ⭐️ if you like this project!
 
 ## 📝 License <a name="license"></a>
 
-This project is [MIT]() licensed.
+This project is [MIT](./MIT.md) licensed.
 
 
 

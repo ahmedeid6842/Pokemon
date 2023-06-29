@@ -191,7 +191,7 @@ button:hover .border {
 
 .popup {
   position: absolute;
-  top: 50%;
+  top: 53%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 9999;
@@ -199,8 +199,9 @@ button:hover .border {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  height: 80%;
-  width: 50%;
+  height: 95%;
+  width: 70%;
+  position: fixed;
 }
 
 .popup-header {
@@ -245,7 +246,6 @@ button:hover .border {
 }
 
 .comment-section form button {
-  background-color: #333;
   color: white;
   border: none;
   padding: 10px;

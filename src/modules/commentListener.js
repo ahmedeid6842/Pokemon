@@ -51,11 +51,13 @@ const sendComment = async (pokemonID) => {
   }
 };
 
-export const commentsCounter = (pokemonID, comments) => {
+export const commentsCounter= (pokemonID, comments) => {
   const sampCommentCount = document.querySelector(
     `#comment-count-${pokemonID}`,
   );
-  sampCommentCount.textContent = comments.length;
+  console.log("------",comments);
+  console.log("***********",pokemonID);
+  sampCommentCount.textContent = comments.length> 0 ? comments.length : 0 ;
 };
 
 export const addCommentButtonListener = () => {
@@ -100,9 +102,11 @@ export const sendCommentButtonListener = () => {
   commentForms.forEach((commentForm) => {
     const pokemonID = commentForm.id.split('-')[2];
     const submitButton = document.querySelector(`#add-comment-pk-${pokemonID}`);
-    submitButton.addEventListener('click', (event) => {
+    submitButton.addEventListener('click', async (event) => {
       event.preventDefault();
-      sendComment(pokemonID);
+      await sendComment(pokemonID);
+      const comments = await getComments(pokemonID);
+      commentsCounter(pokemonID, comments);
     });
   });
 };
