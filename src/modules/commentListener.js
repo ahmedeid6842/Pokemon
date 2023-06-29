@@ -16,6 +16,54 @@ const buildCommentsList = (comments, commentsList) => {
   } else {
     commentsList.innerHTML = '<li>No comments yet</li>';
   }
+  // Update the comments list on the popup
+  const commentsListElement = document.getElementById(`comments-list-${pokemonID}`);
+  commentsListElement.innerHTML = commentsList;
+};
+
+const sendComment = async (pokemonID) => {
+  const commentForm = document.getElementById(`comment-form-${pokemonID}`);
+  const usernameInput = commentForm.querySelector(`#username-${pokemonID}`);
+  const commentInput = commentForm.querySelector(`#comment-${pokemonID}`);
+  const errorElement = document.getElementById(`error-${pokemonID}`);
+
+  if (usernameInput.value !== '' && commentForm.value !== '') {
+    // POST Request
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        item_id: pokemonID,
+        username: usernameInput.value,
+        comment: commentInput.value,
+      }),
+    };
+
+    await fetch(`${urlInvolvementAPI}comments?item_id=${pokemonID}`, requestOptions);
+
+    // GET request to update comment list ---------------------------------------------------
+    getComments(pokemonID);
+
+    // To clean the form -----------------------------------------------------------------
+    commentForm.querySelector(`#username-${pokemonID}`).value = '';
+    commentForm.querySelector(`#comment-${pokemonID}`).value = '';
+  } else {
+    const messages = [];
+    if (usernameInput.value === '' && commentForm.value === '') {
+      messages.push('Please enter a username and a comment.');
+    } else if (commentForm.value === '' && usernameInput.value !== '') {
+      messages.push('Please enter a username.');
+    } else if (usernameInput.value === '' && commentForm.value !== '') {
+      messages.push('Please enter a comment.');
+    }
+
+    if (messages.length > 0) {
+      errorElement.innerText = messages.join(', ');
+      setTimeout(() => {
+        errorElement.remove();
+      }, 3000);
+    }
+  }
 };
 
 const addCommentButtonListener = () => {
