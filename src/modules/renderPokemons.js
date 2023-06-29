@@ -2,7 +2,10 @@
 import { getLikes } from './APIs/likes.js';
 import addLikeListener from './likeListener.js';
 import { getPokemonsData, getPokemonData } from './APIs/pokemon.js';
-import addCommentButtonListener from './commentListener.js';
+import {
+  addCommentButtonListener,
+  sendCommentButtonListener,
+} from './commentListener.js';
 
 const section = document.querySelector('section.pokemon-cards');
 
@@ -16,9 +19,7 @@ const renderPokemonCard = ({
   height,
   weight,
   ability,
-}) => {
-  console.log(name, height);
-  return `
+}) => `
 <div class="pokemon-card" id="${index + 1}">
   <img class="pokemon-card-image" src="${url}" alt="${name}" />
   <div class="pokemon-card-header">
@@ -71,24 +72,30 @@ const renderPokemonCard = ({
     <div class="comment-section">
       <h3>Comments</h3>
       <ul class="comments-list" id="comments-list-pk-${index + 1}"></ul>
-      <form class="comment-form">
+      <form class="comment-form" id="comment-form-${index + 1}">
         <div class="comme">
-          <div>
-            <label for="username">Name:</label>
-            <input type="text" id="username" required />
-          </div>
-          <div>
-            <label for="comments">Comment:</label>
-            <textarea id="Comments" rows="4" required></textarea>
-          </div>
+        <div>
+          <label for="username">Name:</label>
+          <input type="text" id="username-pk-${
+  index + 1
+}" name="username" required>
         </div>
-        <button type="submit">Add Comments</button>
+        <div>
+          <label for="comments">Comment:</label>
+          <textarea id="comment-pk-${
+  index + 1
+}" rows="4" name="comment" required></textarea>
+        </div>
+        </div>
+        <button type="submit" id="add-comment-pk-${
+  index + 1
+}">Add Comments</button>
+        <div class="error-message" id="error-${index + 1}"></div>
       </form>
     </div>
   </div>
 </div>
 `;
-};
 
 const displayPokemonCards = async (listOfPokemons, likesData) => {
   // Map over the list of Pokemons and add the corresponding likes data to each Pokemon object.
@@ -119,6 +126,7 @@ const renderPokemonCards = async (listOfPokemons) => {
   displayPokemonCards(listOfPokemons, likesData);
 
   addLikeListener();
+  sendCommentButtonListener();
 };
 
 // Fetches data from the API and returns an array of pokemon data
@@ -127,7 +135,6 @@ const fetchPokemonData = async () => {
     const pokemonBaseData = await getPokemonsData();
     const promisesArray = pokemonBaseData.map(async ({ url }) => getPokemonData(url));
     const urlsImgArray = await Promise.all(promisesArray);
-    console.log(urlsImgArray);
     const pokemonArray = pokemonBaseData.map(({ name }, i) => ({
       name,
       url: urlsImgArray[i].sprites.front_default,
@@ -136,7 +143,6 @@ const fetchPokemonData = async () => {
       ability: urlsImgArray[i].abilities[0].ability.name,
       type: urlsImgArray[i].types[0].type.name,
     }));
-    console.log(pokemonArray);
     return pokemonArray;
   } catch (error) {
     return [];

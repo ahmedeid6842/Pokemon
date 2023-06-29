@@ -18,8 +18,6 @@ html {
   font-size: 100%;
   vertical-align: baseline;
   box-sizing: inherit;
-
-  /* outline: 1px solid red !important; */
 }
 
 :root {
@@ -338,4 +336,9 @@ footer {
 
 footer a {
   text-decoration: underline;
+}
+
+.error-message {
+  color: red;
+  font-size: 1rem;
 }

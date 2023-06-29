@@ -1,15 +1,14 @@
-import getComments from './APIs/comments';
+import getComments, { postcommint } from './APIs/comments';
 
 const buildCommentsList = (comments, commentsList) => {
-  console.log(commentsList);
   if (comments.length > 0) {
     commentsList.innerHTML = comments
       .map(
         (comment) => `
-          <li>
-            <p><em>${new Date(comment.creation_date).toLocaleDateString()} 
-            ${comment.username}</em> : ${comment.comment} </p>
-          </li>
+        <li>
+        <p><em>${new Date(comment.creation_date).toLocaleDateString()} 
+        ${comment.username}</em> : ${comment.comment} </p>
+        </li>
         `,
       )
       .join('');
@@ -18,7 +17,48 @@ const buildCommentsList = (comments, commentsList) => {
   }
 };
 
-const addCommentButtonListener = () => {
+const sendComment = async (pokemonID) => {
+  const commentForm = document.getElementById(`comment-form-${pokemonID}`);
+  const usernameInput = commentForm.querySelector(`#username-pk-${pokemonID}`);
+  const commentInput = commentForm.querySelector(`#comment-pk-${pokemonID}`);
+  const commentListComponent = document.querySelector(
+    `#comments-list-pk-${pokemonID}`,
+  );
+
+  const errorElement = document.getElementById(`error-${pokemonID}`);
+  if (usernameInput.value !== '' && commentInput.value !== '') {
+    await postcommint(pokemonID, usernameInput.value, commentInput.value);
+    const comments = await getComments(pokemonID);
+    buildCommentsList(comments, commentListComponent);
+    usernameInput.value = '';
+    commentInput.value = '';
+  } else {
+    const messages = [];
+    if (usernameInput.value === '' && commentInput.value === '') {
+      messages.push('Please enter a username and a comment.');
+    } else if (commentInput.value === '' && usernameInput.value !== '') {
+      messages.push('Please enter a username.');
+    } else if (usernameInput.value === '' && commentInput.value !== '') {
+      messages.push('Please enter a comment.');
+    }
+
+    if (messages.length > 0) {
+      errorElement.innerText = messages.join(', ');
+      setTimeout(() => {
+        errorElement.classList.toggle('.hidden');
+      }, 3000);
+    }
+  }
+};
+
+export const commentsCounter = (pokemonID, comments) => {
+  const sampCommentCount = document.querySelector(
+    `#comment-count-${pokemonID}`,
+  );
+  sampCommentCount.textContent = comments.length;
+};
+
+export const addCommentButtonListener = () => {
   const commentBtns = document.querySelectorAll('.comment-btn');
   const pokemonCards = document.querySelectorAll('.pokemon-card');
   const ClosepopupBtns = document.querySelectorAll('.close-popup');
@@ -40,6 +80,7 @@ const addCommentButtonListener = () => {
       popup.classList.toggle('hidden');
       const comments = await getComments(cardId);
       buildCommentsList(comments, commentListComponent);
+      commentsCounter(cardId, comments);
     });
   });
 
@@ -54,4 +95,14 @@ const addCommentButtonListener = () => {
   });
 };
 
-export default addCommentButtonListener;
+export const sendCommentButtonListener = () => {
+  const commentForms = document.querySelectorAll('.comment-form');
+  commentForms.forEach((commentForm) => {
+    const pokemonID = commentForm.id.split('-')[2];
+    const submitButton = document.querySelector(`#add-comment-pk-${pokemonID}`);
+    submitButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      sendComment(pokemonID);
+    });
+  });
+};
