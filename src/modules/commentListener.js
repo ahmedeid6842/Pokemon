@@ -1,7 +1,5 @@
 import getComments, { postcommint } from './APIs/comments';
 
-const involvementURL = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8ev0fUwJNQWCM4y1a4xa/';
-
 const buildCommentsList = (comments, commentsList) => {
   if (comments.length > 0) {
     commentsList.innerHTML = comments

@@ -15,8 +15,12 @@ describe('commentsCounter', () => {
   test('updates comment count when there are comments', () => {
     // Arrange
     const comments = [
-      {id: 1, username: 'user1', comment: 'comment1', creation_date: '2023-06-28'},
-      {id: 2, username: 'user2', comment: 'comment2', creation_date: '2023-06-29'}
+      {
+        id: 1, username: 'user1', comment: 'comment1', creation_date: '2023-06-28',
+      },
+      {
+        id: 2, username: 'user2', comment: 'comment2', creation_date: '2023-06-29',
+      },
     ];
 
     // Act
