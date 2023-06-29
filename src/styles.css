@@ -8,6 +8,7 @@ html {
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
 }
+
 *,
 *::before,
 *::after {
@@ -18,10 +19,12 @@ html {
   vertical-align: baseline;
   box-sizing: inherit;
 }
+
 :root {
   /* Set your variables here */
   --font: "Montserrat", sans-serif;
 }
+
 /* Remove list styles from ul and ol elements */
 ul,
 ol {
