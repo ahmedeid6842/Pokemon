@@ -73,14 +73,14 @@ const renderPokemonCard = ({
       <ul class="comments-list" id="comments-list-pk-${index + 1}"></ul>
       <form class="comment-form">
         <div class="comme">
-          <div>
-            <label for="username">Name:</label>
-            <input type="text" id="username" required />
-          </div>
-          <div>
-            <label for="comments">Comment:</label>
-            <textarea id="Comments" rows="4" required></textarea>
-          </div>
+        <div>
+          <label for="username">Name:</label>
+          <input type="text" id="username-pk-${index + 1}" name="username" required>
+        </div>
+        <div>
+          <label for="comments">Comment:</label>
+          <textarea id="comment-pk-${index + 1}" rows="4" name="comment" required></textarea>
+        </div>
         </div>
         <button type="submit">Add Comments</button>
       </form>
