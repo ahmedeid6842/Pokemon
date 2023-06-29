@@ -70,7 +70,7 @@ const renderPokemonCard = ({
       <p><strong>Ability:</strong>${ability}</p>
     </div>
     <div class="comment-section">
-      <h3>Comments</h3>
+      <h3>Comments ( <samp id="comment-count-${index + 1}"></samp> )</h3>
       <ul class="comments-list" id="comments-list-pk-${index + 1}"></ul>
       <form class="comment-form" id="comment-form-${index + 1}">
         <div class="comme">
