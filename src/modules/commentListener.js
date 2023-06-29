@@ -1,6 +1,4 @@
-import getComments from './APIs/comments';
-
-const involvementURL = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8ev0fUwJNQWCM4y1a4xa/';
+import getComments, { postcommint } from './APIs/comments';
 
 const buildCommentsList = (comments, commentsList) => {
   if (comments.length > 0) {
@@ -30,21 +28,7 @@ const sendComment = async (pokemonID) => {
   const errorElement = document.getElementById(`error-${pokemonID}`);
   console.log(errorElement);
   if (usernameInput.value !== '' && commentInput.value !== '') {
-    // POST Request
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        item_id: pokemonID,
-        username: usernameInput.value,
-        comment: commentInput.value,
-      }),
-    };
-    await fetch(
-      `${involvementURL}comments?item_id=${pokemonID}`,
-      requestOptions,
-    );
-
+    await postcommint(pokemonID, usernameInput.value, commentInput.value);
     const comments = await getComments(pokemonID);
     buildCommentsList(comments, commentListComponent);
     usernameInput.value = '';
