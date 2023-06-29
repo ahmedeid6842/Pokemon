@@ -107,7 +107,7 @@ const displayPokemonCards = async (listOfPokemons, likesData) => {
   addCommentButtonListener();
 };
 
-const pokemonCounter = (pokemons) => {
+export const pokemonCounter = (pokemons) => {
   const sampHeaderElement = document.querySelector('samp');
   sampHeaderElement.textContent = pokemons.length;
 };
