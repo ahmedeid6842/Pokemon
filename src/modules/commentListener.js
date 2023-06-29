@@ -1,10 +1,10 @@
 import getComments from "./APIs/comments";
 const involvementURL =
   "https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8ev0fUwJNQWCM4y1a4xa/";
-  
-  const buildCommentsList = (comments, commentsList) => {
-    if (comments.length > 0) {
-      commentsList.innerHTML = comments
+
+const buildCommentsList = (comments, commentsList) => {
+  if (comments.length > 0) {
+    commentsList.innerHTML = comments
       .map(
         (comment) => `
         <li>
@@ -14,19 +14,19 @@ const involvementURL =
         `
       )
       .join("");
-    } else {
-      commentsList.innerHTML = "<li>No comments yet</li>";
-    }
-  };
+  } else {
+    commentsList.innerHTML = "<li>No comments yet</li>";
+  }
+};
 
-  const sendComment = async (pokemonID) => {
-    const commentForm = document.getElementById(`comment-form-${pokemonID}`);
-    const usernameInput = commentForm.querySelector(`#username-pk-${pokemonID}`);
-    const commentInput = commentForm.querySelector(`#comment-pk-${pokemonID}`);
+const sendComment = async (pokemonID) => {
+  const commentForm = document.getElementById(`comment-form-${pokemonID}`);
+  const usernameInput = commentForm.querySelector(`#username-pk-${pokemonID}`);
+  const commentInput = commentForm.querySelector(`#comment-pk-${pokemonID}`);
   const commentListComponent = document.querySelector(
     `#comments-list-pk-${pokemonID}`
   );
-  
+
   const errorElement = document.getElementById(`error-${pokemonID}`);
   console.log(errorElement);
   if (usernameInput.value !== "" && commentInput.value !== "") {
@@ -68,6 +68,13 @@ const involvementURL =
   }
 };
 
+export const commentsCounter = (pokemonID, comments) => {
+  const sampCommentCount = document.querySelector(
+    `#comment-count-${pokemonID}`
+  );
+  sampCommentCount.textContent = comments.length;
+};
+
 export const addCommentButtonListener = () => {
   const commentBtns = document.querySelectorAll(".comment-btn");
   const pokemonCards = document.querySelectorAll(".pokemon-card");
@@ -90,6 +97,7 @@ export const addCommentButtonListener = () => {
       popup.classList.toggle("hidden");
       const comments = await getComments(cardId);
       buildCommentsList(comments, commentListComponent);
+      commentsCounter(cardId,comments)
     });
   });
 
