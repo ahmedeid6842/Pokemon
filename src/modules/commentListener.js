@@ -1,4 +1,4 @@
-import getComments from './APIs/comments';
+import getComments, { postcommint } from './APIs/comments';
 
 const involvementURL = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8ev0fUwJNQWCM4y1a4xa/';
 
@@ -28,23 +28,8 @@ const sendComment = async (pokemonID) => {
   );
 
   const errorElement = document.getElementById(`error-${pokemonID}`);
-  console.log(errorElement);
   if (usernameInput.value !== '' && commentInput.value !== '') {
-    // POST Request
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        item_id: pokemonID,
-        username: usernameInput.value,
-        comment: commentInput.value,
-      }),
-    };
-    await fetch(
-      `${involvementURL}comments?item_id=${pokemonID}`,
-      requestOptions,
-    );
-
+    await postcommint(pokemonID, usernameInput.value, commentInput.value);
     const comments = await getComments(pokemonID);
     buildCommentsList(comments, commentListComponent);
     usernameInput.value = '';
@@ -114,9 +99,7 @@ export const addCommentButtonListener = () => {
 
 export const sendCommentButtonListener = () => {
   const commentForms = document.querySelectorAll('.comment-form');
-  // console.log(commentForms);
   commentForms.forEach((commentForm) => {
-    // console.log(commentForm);
     const pokemonID = commentForm.id.split('-')[2];
     const submitButton = document.querySelector(`#add-comment-pk-${pokemonID}`);
     submitButton.addEventListener('click', (event) => {
