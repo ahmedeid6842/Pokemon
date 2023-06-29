@@ -51,11 +51,11 @@ const sendComment = async (pokemonID) => {
   }
 };
 
-export const commentsCounter= (pokemonID, comments) => {
+export const commentsCounter = (pokemonID, comments) => {
   const sampCommentCount = document.querySelector(
     `#comment-count-${pokemonID}`,
   );
-  sampCommentCount.textContent = comments.length> 0 ? comments.length : 0 ;
+  sampCommentCount.textContent = comments.length > 0 ? comments.length : 0;
 };
 
 export const addCommentButtonListener = () => {
