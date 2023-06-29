@@ -55,8 +55,6 @@ export const commentsCounter= (pokemonID, comments) => {
   const sampCommentCount = document.querySelector(
     `#comment-count-${pokemonID}`,
   );
-  console.log("------",comments);
-  console.log("***********",pokemonID);
   sampCommentCount.textContent = comments.length> 0 ? comments.length : 0 ;
 };
 
