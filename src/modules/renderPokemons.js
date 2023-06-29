@@ -118,6 +118,7 @@ const displayPokemonCards = async (listOfPokemons, likesData) => {
 
 const pokemonCounter = (pokemons) => {
   const sampHeaderElement = document.querySelector("samp");
+
   sampHeaderElement.textContent = pokemons.length;
 };
 
