@@ -25,7 +25,7 @@
 
 # 📖 Pokemon <a name="list structure"></a>
 
->**Pokemon!** This Pokedex is an application that catalogs information about the various species of Pokemon. Includes details such as the Pokemon's name, type, abilities, strengths y comments about it.
+>**Pokemon!** This Pokedex is an application that catalogs information about the various species of Pokemon. Includes details such as the Pokemon's name, type, abilities, strengths y comments about it. [Here](https://drive.google.com/file/d/1W33wFQVJxVfYU6LJdRj7XASaYp8-MEYp/view) is the link to the video presentation 
 
 
 ## 🛠 Built With <a name="built-with">
