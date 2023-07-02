@@ -43,8 +43,9 @@
 
 ### Key Features <a name="key-features"></a>
 
-- **[Good HTML ,CSS and JS practices]**
-- **[This repository includes linters]**
+- **Good HTML, CSS and JS practices**
+- **Using a Pokemon API to render the data dynamically**
+- **This repository includes Linters**
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -74,7 +75,7 @@ Clone this repository to your desired folder:
 
 - clone the project using by running the following command :
 
-```
+```bash
 git clone https://github.com/ahmedeid6842/API_Capstone.git
 
 ```
@@ -128,7 +129,8 @@ To run the test run the following command :
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **[make the project more professional]**
+- [ ] **Enhance the style of the comment page**
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
